@@ -1,0 +1,7 @@
+#Ranks which will be checked by the plugin
+ranks:
+  - mvip
+  - vip
+#Number of hours after which plugin will remind to re-buy the rank (only integer values)
+#defalut: 168 (7 days)
+hours: 168
