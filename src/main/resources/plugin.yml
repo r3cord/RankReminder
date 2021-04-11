@@ -11,5 +11,6 @@ commands:
     aliases: [rankexpiration]
     description: Shows when player's rank expires
     usage: /<command>
+  rankreminder:
 
 depend: [LuckPerms]
