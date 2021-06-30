@@ -15,6 +15,8 @@ public class RankReminder extends JavaPlugin
     //Variable for an instance of the LuckPerms API
     public static LuckPerms api;
 
+    public MessagesManager messages;
+
     public static RankReminder mainPlugin;
 
     @Override
@@ -27,14 +29,18 @@ public class RankReminder extends JavaPlugin
         //Obtaining this (RankReminder) class
         mainPlugin = this;
 
-        //Informing about plugin start-up
-        ConsoleCommandSender console = getServer().getConsoleSender();
-        console.sendMessage("[R3Craft.pl] PLugin Informacyjny uruchomiony!");
-
         //Obtaining an instance of the LuckPerms API
         api = LuckPermsProvider.get();
         //Obtaining default config file
         this.saveDefaultConfig();
+
+        this.messages = new MessagesManager(this);
+        this.messages.saveDefaultConfig();
+        this.messages.reloadMessages();
+
+        //Informing about plugin start-up
+        ConsoleCommandSender console = getServer().getConsoleSender();
+        console.sendMessage(ChatColor.translateAlternateColorCodes('&', messages.getMessages().getString("messages.console-start").replaceAll("%prefix%", messages.getMessages().getString("messages.prefix"))));
     }
 
     @Override
@@ -42,7 +48,7 @@ public class RankReminder extends JavaPlugin
     {
         //Informing about plugin stop
         ConsoleCommandSender console = getServer().getConsoleSender();
-        console.sendMessage("[R3Craft.pl] PLugin Informacyjny wyłączony!");
+        console.sendMessage(ChatColor.translateAlternateColorCodes('&', messages.getMessages().getString("messages.console-stop").replaceAll("%prefix%", messages.getMessages().getString("messages.prefix"))));
     }
 
     //rankreminder commands
@@ -52,12 +58,12 @@ public class RankReminder extends JavaPlugin
         {
             if(!sender.hasPermission("rankreminder.reload"))
             {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cYou don't have permission to run this command!"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', messages.getMessages().getString("messages.no-permission").replaceAll("%prefix%", messages.getMessages().getString("messages.prefix"))));
                 return true;
             }
             if(args.length == 0)
             {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cWrong command! Type &7/rankreminder help &cfor help"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', messages.getMessages().getString("messages.wrong-command").replaceAll("%prefix%", messages.getMessages().getString("messages.prefix"))));
                 return true;
             }
             if(args.length > 0)
@@ -66,15 +72,16 @@ public class RankReminder extends JavaPlugin
                 {
                     //Reloading the config
                     this.reloadConfig();
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aConfiguration files reloaded!"));
+                    this.messages.reloadMessages();;
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', messages.getMessages().getString("messages..reload").replaceAll("%prefix%", messages.getMessages().getString("messages.prefix"))));
                     return true;
                 }
                 else if(args[0].equalsIgnoreCase("help")) //rankreminder help command
                 {
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6RankReminder - help"));
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a/rankreminder reload &7- Reloads the config"));
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a/ranga &7- shows info about your rank "));
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a/rankexpiration &7- shows info about your rank "));
+                    for(String help : messages.getMessages().getStringList("messages.help"))
+                    {
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', help.replaceAll("%prefix%", messages.getMessages().getString("messages.prefix"))));
+                    }
                     return true;
                 }
             }

@@ -44,9 +44,9 @@ public class PlayerJoinListener implements Listener
                             //Obtaining meta data of the current group
                             CachedMetaData metaData = RankReminder.api.getGroupManager().getGroup(rank).getCachedData().getMetaData();
                             //Obtaining prefix of the current group
-                            String prefix = metaData.getPrefix();
+                            String rankPrefix = metaData.getPrefix();
                             //Sending the message to the player
-                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&aR3Craft.pl&8] &7Twoja ranga &5"+prefix+" &7kończy się za: &c" + result + "&7! &aPrzedłuż ją w sklepie! &6/sklep"));
+                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.messages.getMessages().getString("messages..reminder").replaceAll("%prefix%", plugin.messages.getMessages().getString("messages.prefix")).replaceAll("%rankPrefix%", rankPrefix).replaceAll("%time%", result)));
                         }
                     }
                 }

@@ -22,7 +22,7 @@ public class Time {
             return  DurationFormatUtils.formatDuration(ms, "d'd' H'h' m'm' s's'"); //Returning the time in String
         }
         else
-            return "nigdy";
+            return RankReminder.mainPlugin.messages.getMessages().getString("messages.never");
     }
 
     //Static method which checks if the plugin should remind that the rank is expiring

@@ -1,7 +1,6 @@
 name: RankReminder
 version: ${project.version}
 main: pl.r3craft.rankreminder.RankReminder
-api-version: 1.16
 authors: [ r3cord ]
 description: Plugin that reminds players to buy rank for longer.
 website: r3craft.pl

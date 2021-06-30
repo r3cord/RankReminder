@@ -46,23 +46,24 @@ public class RankTime implements CommandExecutor {
                                 String prefix = metaData.getPrefix();
 
                                 //Send messages
-                                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&aR3Craft.pl&8] &7Informacje o randze:"));
-                                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8* &7Posiadana ranga: " + prefix));
-                                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8* &7Ranga kończy się za: &a" + Time.getTime(player, rank)));
-                                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aPrzedłuż ją w sklepie! &6/sklep"));
+                                for(String rankInfo : plugin.messages.getMessages().getStringList("messages.rankInfo"))
+                                {
+                                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', rankInfo.replaceAll("%prefix%", plugin.messages.getMessages().getString("messages.prefix")).replaceAll("%rankPrefix%", prefix).replaceAll("%time%", Time.getTime(player, rank))));
+                                }
                             }
                         }
                         if(!haveRank) //If the player is not in any group from the config file
                         {
-                            //Send messages
-                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8[&aR3Craft.pl&8] &7Informacje o randze:"));
-                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8* &cNie posiadasz żadnej zakupionej rangi!"));
-                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aZmień to kupując ją w sklepie! &6/sklep"));
+                            for(String noRankInfo : plugin.messages.getMessages().getStringList("messages.noRankInfo"))
+                            {
+                                //Send messages
+                                player.sendMessage(ChatColor.translateAlternateColorCodes('&', noRankInfo.replaceAll("%prefix%", plugin.messages.getMessages().getString("messages.prefix"))));
+                            }
                         }
                     }
                     else
                     {
-                        sender.sendMessage("Tej komendy nie można używać z poziomu konsoli");
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.messages.getMessages().getString("messages.only-player").replaceAll("%prefix%", plugin.messages.getMessages().getString("messages.prefix"))));
                     }
                 }
             });
