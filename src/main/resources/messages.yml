@@ -1,0 +1,24 @@
+messages:
+  prefix: "&8[&aRankReminder&8]"
+  console-start: "%prefix% Plugin enabled!"
+  console-stop: "%prefix% Plugin disabled!"
+  reload: "%prefix% Configuration files reloaded!"
+  reminder: "&8[&aR3Craft.pl&8] &7Your rank &5%rankPrefix% &7will expire within: &c %time% &7! &aYou can extend the time of your rank in itemshop! &6/itemshop"
+  no-premission: "%prefix% &cYou don't have permission to run this command!"
+  wrong-command: "%prefix% &cWrong command! Type &7/rankreminder help &cfor help"
+  only-player: "%prefix% You can't use this command from console!"
+  never: "&anever"
+  help:
+    - "%prefix%  - help"
+    - "&a/rankreminder reload &7- Reloads the config"
+    - "&a/ranga &7- shows info about your rank"
+    - "&a/rankexpiration &7- shows info about your rank"
+  rankInfo:
+    - "%prefix% &7Information about your rank:"
+    - "&8* &7Your rank: %rankPrefix%"
+    - "&8* &7Rank will expire within: &a%time%"
+    - "&aYou can extend the time of your rank in itemshop! &6/itemshop"
+  noRankInfo:
+    - "%prefix% &7Information about your rank:"
+    - "&8* &cYou don't have any special rank!"
+    - "&aChange it right now! &6/itemshop"
