@@ -23,6 +23,4 @@ Just dowload a JAR file from releases and drop it down to your plugin folder. If
 This plugin REQUIRES [LuckPerms](https://luckperms.net/) plugin installed on your minecraft server!
 
 ## Plans:
-* add config file
 * add support of different languages
-* support custom groups (not only vip/mvip)
