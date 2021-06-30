@@ -23,4 +23,4 @@ Just dowload a JAR file from releases and drop it down to your plugin folder. If
 This plugin REQUIRES [LuckPerms](https://luckperms.net/) plugin installed on your minecraft server!
 
 ## Plans:
-* add support of different languages
+* all future plans are completed (I'm open to suggestions)
